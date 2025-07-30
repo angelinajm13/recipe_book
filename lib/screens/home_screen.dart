@@ -9,6 +9,26 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: <Widget>[_RecipesCard(context), _RecipesCard(context)],
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.pink,
+        child: Icon(Icons.add, color: Colors.white),
+        onPressed: () {
+          // Acción al presionar el botón flotante
+          _showBottom(context);
+        },
+      ),
+    );
+  }
+
+  Future<void> _showBottom(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (contexto) => Container(
+        width: MediaQuery.of(context).size.width,
+        height: 500,
+        color: Colors.white,
+        child: RecipeForm(),
+      ),
     );
   }
 
@@ -58,6 +78,48 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class RecipeForm extends StatelessWidget {
+  const RecipeForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(8),
+      child: Form(
+        // key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Add New Recipe',
+              style: TextStyle(color: Colors.deepPurple, fontSize: 24),
+            ),
+            SizedBox(height: 16),
+            _buildTextField(label: 'Recipe Name'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField({required String label}) {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(
+          fontFamily: 'Quicksand',
+          color: Colors.deepPurple,
+        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.deepPurple, width: 2),
+          borderRadius: BorderRadius.circular(10),
         ),
       ),
     );
