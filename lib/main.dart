@@ -31,7 +31,7 @@ class RecipeBook extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           // AppBar widget es la barra superior de la aplicación.
-          backgroundColor: Colors.orange,
+          backgroundColor: Colors.pinkAccent,
           title: Text('Recipe Book', style: TextStyle(color: Colors.white)),
           bottom: TabBar(
             indicatorColor: Colors.white,

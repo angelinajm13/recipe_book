@@ -6,7 +6,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: Column(
+        children: <Widget>[_RecipesCard(context), _RecipesCard(context)],
+      ),
+    );
+  }
+
+  Widget _RecipesCard(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
         // área principal de la aplicación.
         width: MediaQuery.of(context).size.width,
         height: 125,
@@ -18,6 +27,10 @@ class HomeScreen extends StatelessWidget {
                 // este container es una caja que contiene un widget.
                 height: 125,
                 width: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Color(0xFFFFB6C1), // color rosa claro
+                ),
                 child: ClipRRect(
                   // da bordes redondeados a un widget.
                   borderRadius: BorderRadius.circular(10),
@@ -26,11 +39,22 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(width: 26),
               Column(
+                mainAxisAlignment: MainAxisAlignment.center, // centrar
+                crossAxisAlignment:
+                    CrossAxisAlignment.start, // alinear a la izquierda
                 //apila widgets verticalmente.
                 children: <Widget>[
-                  Text('Lasagna'),
-                  Text('Alison J'),
-                  Container(height: 2, width: 75, color: Colors.orange),
+                  Text(
+                    'Capuccino',
+                    style: TextStyle(fontSize: 16, fontFamily: 'Quicksand'),
+                  ),
+                  SizedBox(height: 4),
+                  Container(height: 2, width: 75, color: Color(0xFFFFB6C1)),
+                  Text(
+                    'Café',
+                    style: TextStyle(fontSize: 16, fontFamily: 'Quicksand'),
+                  ),
+                  SizedBox(height: 4),
                 ],
               ),
             ],
