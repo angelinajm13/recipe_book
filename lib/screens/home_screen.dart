@@ -27,14 +27,13 @@ class HomeScreen extends StatelessWidget {
                 // este container es una caja que contiene un widget.
                 height: 125,
                 width: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Color(0xFFFFB6C1), // color rosa claro
-                ),
                 child: ClipRRect(
-                  // da bordes redondeados a un widget.
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(),
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network(
+                    'https://armonicacafe.com/cdn/shop/files/Capuccinoycarrotcake.jpg?v=1751389753',
+                    fit: BoxFit
+                        .cover, // ajusta la imagen al tamaño del container
+                  ),
                 ),
               ),
               SizedBox(width: 26),
