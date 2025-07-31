@@ -13,12 +13,6 @@ class HomeScreen extends StatelessWidget {
             _RecipesCard(context),
             _RecipesCard(context),
             _RecipesCard(context),
-            _RecipesCard(context),
-            _RecipesCard(context),
-            _RecipesCard(context),
-            _RecipesCard(context),
-            _RecipesCard(context),
-            _RecipesCard(context),
           ],
         ),
       ),
@@ -113,14 +107,23 @@ class RecipeForm extends StatelessWidget {
               style: TextStyle(color: Colors.deepPurple, fontSize: 24),
             ),
             SizedBox(height: 16),
-            _buildTextField(label: 'Recipe Name'),
+            _buildTextField(label: 'Recipe Name', icon: Icons.restaurant_menu),
+
+            SizedBox(height: 16),
+            _buildTextField(label: 'Autor Name', icon: Icons.category),
+
+            SizedBox(height: 16),
+            _buildTextField(label: 'Recipe Description', icon: Icons.image),
+
+            SizedBox(height: 16),
+            _buildTextField(label: 'Image URL', icon: Icons.image),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildTextField({required String label}) {
+  Widget _buildTextField({required String label, IconData? icon}) {
     return TextFormField(
       decoration: InputDecoration(
         labelText: label,
@@ -128,6 +131,7 @@ class RecipeForm extends StatelessWidget {
           fontFamily: 'Quicksand',
           color: Colors.deepPurple,
         ),
+        prefixIcon: icon != null ? Icon(icon, color: Colors.deepPurple) : null,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.deepPurple, width: 2),
