@@ -27,7 +27,7 @@ class RecipeBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 1,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           // AppBar widget es la barra superior de la aplicación.
@@ -37,11 +37,25 @@ class RecipeBook extends StatelessWidget {
             indicatorColor: Colors.white,
             labelColor: Colors.white,
             unselectedLabelColor: Colors.white,
-            tabs: [Tab(icon: Icon(Icons.home), text: 'Home')],
+            tabs: [
+              Tab(icon: Icon(Icons.home), text: 'Home'),
+              Tab(icon: Icon(Icons.favorite), text: 'Favorites'),
+            ],
           ),
         ),
-        body: TabBarView(children: [HomeScreen()]),
+        body: TabBarView(children: [HomeScreen(), FavoritesScreen()]),
       ),
+    );
+  }
+}
+
+class FavoritesScreen extends StatelessWidget {
+  const FavoritesScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Favorites Screen', style: TextStyle(fontSize: 24)),
     );
   }
 }
