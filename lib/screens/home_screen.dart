@@ -95,6 +95,13 @@ class RecipeForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
+
+    final TextEditingController _recipeName = TextEditingController();
+    final TextEditingController _recipeAutor = TextEditingController();
+    final TextEditingController _recipeIMG = TextEditingController();
+    final TextEditingController _recipeDescription = TextEditingController();
+
     return Padding(
       padding: EdgeInsets.all(8),
       child: Form(
@@ -107,23 +114,43 @@ class RecipeForm extends StatelessWidget {
               style: TextStyle(color: Colors.deepPurple, fontSize: 24),
             ),
             SizedBox(height: 16),
-            _buildTextField(label: 'Recipe Name', icon: Icons.restaurant_menu),
+            _buildTextField(
+              controller: _recipeName,
+              label: 'Recipe Name',
+              icon: Icons.restaurant_menu,
+            ),
 
             SizedBox(height: 16),
-            _buildTextField(label: 'Autor Name', icon: Icons.category),
+            _buildTextField(
+              controller: _recipeAutor,
+              label: 'Autor Name',
+              icon: Icons.category,
+            ),
 
             SizedBox(height: 16),
-            _buildTextField(label: 'Recipe Description', icon: Icons.image),
+            _buildTextField(
+              controller: _recipeDescription,
+              label: 'Recipe Description',
+              icon: Icons.image,
+            ),
 
             SizedBox(height: 16),
-            _buildTextField(label: 'Image URL', icon: Icons.image),
+            _buildTextField(
+              controller: _recipeIMG,
+              label: 'Image URL',
+              icon: Icons.image,
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildTextField({required String label, IconData? icon}) {
+  Widget _buildTextField({
+    required String label,
+    IconData? icon,
+    required TextEditingController controller,
+  }) {
     return TextFormField(
       decoration: InputDecoration(
         labelText: label,
