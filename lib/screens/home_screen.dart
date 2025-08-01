@@ -31,11 +31,24 @@ class HomeScreen extends StatelessWidget {
 Future<void> _showBottom(BuildContext context) {
   return showModalBottomSheet(
     context: context,
-    builder: (contexto) => Container(
-      width: MediaQuery.of(context).size.width,
-      height: 500,
-      color: Colors.white,
-      child: RecipeForm(),
+    isScrollControlled: true,
+    builder: (contexto) => Padding(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(contexto).viewInsets.bottom,
+      ),
+      child: Container(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(contexto).size.height * 0.5,
+        ),
+        width: MediaQuery.of(contexto).size.width,
+        color: Colors.white,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(child: SingleChildScrollView(child: RecipeForm())),
+          ],
+        ),
+      ),
     ),
   );
 }
@@ -105,40 +118,90 @@ class RecipeForm extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(8),
       child: Form(
-        // key: _formKey,
+        key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Add New Recipe',
-              style: TextStyle(color: Colors.deepPurple, fontSize: 24),
+              style: TextStyle(color: Colors.pink, fontSize: 22),
             ),
-            SizedBox(height: 16),
+
             _buildTextField(
               controller: _recipeName,
               label: 'Recipe Name',
               icon: Icons.restaurant_menu,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter a recipe name';
+                }
+                return null;
+              },
             ),
+            SizedBox(height: 14),
 
-            SizedBox(height: 16),
             _buildTextField(
               controller: _recipeAutor,
               label: 'Autor Name',
               icon: Icons.category,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter a autor recipe name';
+                }
+                return null;
+              },
             ),
+            SizedBox(height: 14),
 
-            SizedBox(height: 16),
             _buildTextField(
+              maxLines: 3,
               controller: _recipeDescription,
               label: 'Recipe Description',
-              icon: Icons.image,
+              icon: Icons.description,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter a recipe description';
+                }
+                return null;
+              },
             ),
+            SizedBox(height: 14),
 
-            SizedBox(height: 16),
             _buildTextField(
               controller: _recipeIMG,
               label: 'Image URL',
               icon: Icons.image,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter a recipe image URL';
+                }
+                return null;
+              },
+            ),
+            SizedBox(height: 14),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    // Aquí puedo manejar la lógica para guardar la receta
+                    Navigator.pop(context); // Cierra el modal al guardar
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.pink,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: Text(
+                  'Save Recipe',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
@@ -148,23 +211,27 @@ class RecipeForm extends StatelessWidget {
 
   Widget _buildTextField({
     required String label,
-    IconData? icon,
+    required IconData? icon,
     required TextEditingController controller,
+    required String? Function(String?) validator,
+    int maxLines = 1,
   }) {
     return TextFormField(
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(
           fontFamily: 'Quicksand',
-          color: Colors.deepPurple,
+          color: Colors.pinkAccent,
         ),
-        prefixIcon: icon != null ? Icon(icon, color: Colors.deepPurple) : null,
+        prefixIcon: icon != null ? Icon(icon, color: Colors.pinkAccent) : null,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.deepPurple, width: 2),
+          borderSide: BorderSide(color: Colors.pinkAccent, width: 2),
           borderRadius: BorderRadius.circular(10),
         ),
       ),
+      validator: validator,
+      maxLines: maxLines,
     );
   }
 }
