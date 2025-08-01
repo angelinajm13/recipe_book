@@ -1,10 +1,21 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:recipe_book/screens/recipe_detail.dart';
+import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+  Future<List<dynamic>> FetchRecipes() async {
+    final url = Uri.parse('http://localhost:8000/recipes'); // URL de API
+    final response = await http.get(url);
+    final data = jsonDecode(response.body);
+    return data['recipes'];
+  }
 
   @override
   Widget build(BuildContext context) {
+    FetchRecipes();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -54,49 +65,60 @@ Future<void> _showBottom(BuildContext context) {
 }
 
 Widget _RecipesCard(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Container(
-      // área principal de la aplicación.
-      width: MediaQuery.of(context).size.width,
-      height: 125,
-      child: Card(
-        // cajita con bordes y sombra
-        child: Row(
-          children: <Widget>[
-            Container(
-              // este container es una caja que contiene un widget.
-              height: 125,
-              width: 100,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.network(
-                  'https://armonicacafe.com/cdn/shop/files/Capuccinoycarrotcake.jpg?v=1751389753',
-                  fit: BoxFit.cover, // ajusta la imagen al tamaño del container
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => RecipeDetail(recipeName: 'Lasagna'),
+        ),
+      );
+    },
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        // área principal de la aplicación.
+        width: MediaQuery.of(context).size.width,
+        height: 125,
+        child: Card(
+          // cajita con bordes y sombra
+          child: Row(
+            children: <Widget>[
+              Container(
+                // este container es una caja que contiene un widget.
+                height: 125,
+                width: 100,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network(
+                    'https://armonicacafe.com/cdn/shop/files/Capuccinoycarrotcake.jpg?v=1751389753',
+                    fit: BoxFit
+                        .cover, // ajusta la imagen al tamaño del container
+                  ),
                 ),
               ),
-            ),
-            SizedBox(width: 26),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center, // centrar
-              crossAxisAlignment:
-                  CrossAxisAlignment.start, // alinear a la izquierda
-              //apila widgets verticalmente.
-              children: <Widget>[
-                Text(
-                  'Capuccino',
-                  style: TextStyle(fontSize: 16, fontFamily: 'Quicksand'),
-                ),
-                SizedBox(height: 4),
-                Container(height: 2, width: 75, color: Color(0xFFFFB6C1)),
-                Text(
-                  'Café',
-                  style: TextStyle(fontSize: 16, fontFamily: 'Quicksand'),
-                ),
-                SizedBox(height: 4),
-              ],
-            ),
-          ],
+              SizedBox(width: 26),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center, // centrar
+                crossAxisAlignment:
+                    CrossAxisAlignment.start, // alinear a la izquierda
+                //apila widgets verticalmente.
+                children: <Widget>[
+                  Text(
+                    'Capuccino',
+                    style: TextStyle(fontSize: 16, fontFamily: 'Quicksand'),
+                  ),
+                  SizedBox(height: 4),
+                  Container(height: 2, width: 75, color: Color(0xFFFFB6C1)),
+                  Text(
+                    'Café',
+                    style: TextStyle(fontSize: 16, fontFamily: 'Quicksand'),
+                  ),
+                  SizedBox(height: 4),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     ),

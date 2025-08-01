@@ -1,0 +1,94 @@
+{
+  "uuid": "2ae26ea5-7a46-46bc-896c-3a4adab645ff",
+  "lastMigration": 33,
+  "name": "RecipeBook",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 8000,
+  "hostname": "localhost",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "2efb35a7-b3da-44aa-b89c-e483e828ec31",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "recipes",
+      "responses": [
+        {
+          "uuid": "eb8a8e6d-d0ee-42da-83d7-493a28e1e4a4",
+          "body": "{\r\n  \"recipes\": [\r\n    {\r\n      \"name\": \"Arepas Venezolanas\",\r\n      \"author\": \"Chef Carla Mendoza\",\r\n      \"image_link\": \"https://static.platzi.com/media/uploads/arepas.jpg\",\r\n      \"recipe\": [\r\n        \"Mezcla harina de maíz precocida con agua y sal.\",\r\n        \"Forma bolas y aplánalas para dar forma de arepa.\",\r\n        \"Cocina en una plancha caliente hasta dorar ambos lados.\",\r\n        \"Abre y rellena con queso, jamón o carne mechada.\",\r\n        \"Sirve calientes.\"\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Shakshuka\",\r\n      \"author\": \"Chef Nabil El-Sayed\",\r\n      \"image_link\": \"https://static.platzi.com/media/uploads/shakshuka.jpg\",\r\n      \"recipe\": [\r\n        \"Sofríe cebolla, ajo y pimientos en aceite de oliva.\",\r\n        \"Añade tomate triturado y especias como comino y pimentón.\",\r\n        \"Haz huecos en la salsa y rompe los huevos dentro.\",\r\n        \"Cubre y cocina hasta que las claras estén cocidas.\",\r\n        \"Sirve con pan tostado.\"\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Gallo Pinto\",\r\n      \"author\": \"Chef Daniela Castro\",\r\n      \"image_link\": \"https://static.platzi.com/media/uploads/gallo_pinto.jpg\",\r\n      \"recipe\": [\r\n        \"Sofríe cebolla, ajo y chile dulce en una sartén.\",\r\n        \"Agrega arroz cocido y frijoles negros cocidos.\",\r\n        \"Mezcla bien y sazona con sal y culantro.\",\r\n        \"Cocina hasta que esté bien mezclado y caliente.\",\r\n        \"Sirve con huevo frito y plátano.\"\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Moussaka Griega\",\r\n      \"author\": \"Chef Eleni Papadopoulos\",\r\n      \"image_link\": \"https://static.platzi.com/media/uploads/moussaka.jpg\",\r\n      \"recipe\": [\r\n        \"Fríe rodajas de berenjena hasta dorar.\",\r\n        \"Cocina carne molida con tomate, cebolla y especias.\",\r\n        \"Prepara una salsa bechamel con leche, mantequilla y harina.\",\r\n        \"En un molde, alterna capas de berenjena, carne y bechamel.\",\r\n        \"Hornea hasta que la parte superior esté dorada.\"\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Tarta de Limón\",\r\n      \"author\": \"Chef Clara Ibáñez\",\r\n      \"image_link\": \"https://static.platzi.com/media/uploads/tarta_limon.jpg\",\r\n      \"recipe\": [\r\n        \"Prepara una base con galletas trituradas y mantequilla.\",\r\n        \"Mezcla leche condensada, jugo de limón y yemas de huevo.\",\r\n        \"Vierte la mezcla sobre la base y hornea.\",\r\n        \"Bate claras a punto de nieve con azúcar para hacer merengue.\",\r\n        \"Cubre la tarta con merengue y gratina ligeramente.\"\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Cazuela de Mariscos\",\r\n      \"author\": \"Chef Jorge Valverde\",\r\n      \"image_link\": \"https://static.platzi.com/media/uploads/cazuela_mariscos.jpg\",\r\n      \"recipe\": [\r\n        \"Sofríe cebolla, ajo, tomate y pimientos.\",\r\n        \"Añade camarones, calamares y pescado en trozos.\",\r\n        \"Agrega leche de coco y caldo de pescado.\",\r\n        \"Cocina a fuego medio hasta que los mariscos estén listos.\",\r\n        \"Sirve caliente con arroz blanco.\"\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Tarta de Manzana\",\r\n      \"author\": \"Chef Lucía Morel\",\r\n      \"image_link\": \"https://static.platzi.com/media/uploads/tarta_manzana.jpg\",\r\n      \"recipe\": [\r\n        \"Prepara una masa quebrada y colócala en un molde.\",\r\n        \"Rellena con manzanas en rodajas, azúcar y canela.\",\r\n        \"Hornea hasta que las manzanas estén suaves y la masa dorada.\",\r\n        \"Pinta con mermelada de durazno para dar brillo.\",\r\n        \"Sirve tibia con helado de vainilla.\"\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Falafel\",\r\n      \"author\": \"Chef Ahmed Rami\",\r\n      \"image_link\": \"https://static.platzi.com/media/uploads/falafel.jpg\",\r\n      \"recipe\": [\r\n        \"Remoja garbanzos durante 12 horas.\",\r\n        \"Licúa con ajo, cebolla, cilantro, comino y sal.\",\r\n        \"Forma bolitas y fríelas en aceite caliente.\",\r\n        \"Escurre sobre papel absorbente.\",\r\n        \"Sirve con pan pita, lechuga y tahini.\"\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Chilaquiles Verdes\",\r\n      \"author\": \"Chef Rosa Méndez\",\r\n      \"image_link\": \"https://static.platzi.com/media/uploads/chilaquiles.jpg\",\r\n      \"recipe\": [\r\n        \"Fríe tortillas cortadas en triángulos.\",\r\n        \"Licúa tomates verdes, ajo, cebolla y chile.\",\r\n        \"Hierve la salsa y añade las tortillas fritas.\",\r\n        \"Cocina brevemente para que absorban la salsa.\",\r\n        \"Sirve con crema, queso fresco y cebolla.\"\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Galletas de Avena\",\r\n      \"author\": \"Chef Bruno Herrera\",\r\n      \"image_link\": \"https://static.platzi.com/media/uploads/galletas_avena.jpg\",\r\n      \"recipe\": [\r\n        \"Mezcla avena, azúcar, mantequilla y huevo.\",\r\n        \"Añade pasas o chispas de chocolate al gusto.\",\r\n        \"Forma bolitas y colócalas en una bandeja.\",\r\n        \"Hornea a 180°C por 12-15 minutos.\",\r\n        \"Deja enfriar antes de servir.\"\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "2efb35a7-b3da-44aa-b89c-e483e828ec31"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}
