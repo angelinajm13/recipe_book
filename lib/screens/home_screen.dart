@@ -15,17 +15,19 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FetchRecipes();
+    // FetchRecipes();
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            _RecipesCard(context),
-            _RecipesCard(context),
-            _RecipesCard(context),
-            _RecipesCard(context),
-          ],
-        ),
+      body: FutureBuilder(
+        future: FetchRecipes(),
+        builder: (context, snapshot) {
+          final recipes = snapshot.data;
+          return ListView.builder(
+            itemCount: recipes.length,
+            itemBuilder: (context, index) {
+              return _RecipesCard(context);
+            },
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.pink,
