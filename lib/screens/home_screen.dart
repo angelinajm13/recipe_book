@@ -7,26 +7,45 @@ import 'package:http/http.dart' as http;
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
   Future<List<dynamic>> FetchRecipes() async {
-    final url = Uri.parse('http://localhost:8000/recipes'); // URL de API
-    final response = await http.get(url);
-    final data = jsonDecode(response.body);
-    return data['recipes'];
+    // Android 10.0.2.2
+    // iOS 127.0.0.1
+    // web
+    final url = Uri.parse('http://10.0.2.2:12346/recipes'); // URL de API
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return data['recipes'];
+      } else {
+        print('Error: ${response.statusCode}');
+        return []; // Manejo de error
+      }
+    } catch (e) {
+      print('Error in request');
+      return []; // Manejo de error
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     // FetchRecipes();
     return Scaffold(
-      body: FutureBuilder(
+      body: FutureBuilder<List<dynamic>>(
         future: FetchRecipes(),
         builder: (context, snapshot) {
-          final recipes = snapshot.data;
-          return ListView.builder(
-            itemCount: recipes.length,
-            itemBuilder: (context, index) {
-              return _RecipesCard(context);
-            },
-          );
+          final recipes = snapshot.data ?? [];
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No recipes found'));
+          } else {
+            return ListView.builder(
+              itemCount: recipes.length,
+              itemBuilder: (context, index) {
+                return _RecipesCard(context, recipes[index]);
+              },
+            );
+          }
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -66,13 +85,13 @@ Future<void> _showBottom(BuildContext context) {
   );
 }
 
-Widget _RecipesCard(BuildContext context) {
+Widget _RecipesCard(BuildContext context, dynamic recipe) {
   return GestureDetector(
     onTap: () {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => RecipeDetail(recipeName: 'Lasagna'),
+          builder: (context) => RecipeDetail(recipeName: 'name'),
         ),
       );
     },
@@ -93,7 +112,7 @@ Widget _RecipesCard(BuildContext context) {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Image.network(
-                    'https://armonicacafe.com/cdn/shop/files/Capuccinoycarrotcake.jpg?v=1751389753',
+                    recipe['image_link'], // URL de la imagen
                     fit: BoxFit
                         .cover, // ajusta la imagen al tamaño del container
                   ),
@@ -107,13 +126,13 @@ Widget _RecipesCard(BuildContext context) {
                 //apila widgets verticalmente.
                 children: <Widget>[
                   Text(
-                    'Capuccino',
+                    '${recipe['name']}', // nombre de la receta
                     style: TextStyle(fontSize: 16, fontFamily: 'Quicksand'),
                   ),
                   SizedBox(height: 4),
                   Container(height: 2, width: 75, color: Color(0xFFFFB6C1)),
                   Text(
-                    'Café',
+                    '${recipe['author']}', // nombre del autor
                     style: TextStyle(fontSize: 16, fontFamily: 'Quicksand'),
                   ),
                   SizedBox(height: 4),
