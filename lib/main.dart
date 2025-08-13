@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:recipe_book/providers/recipes_provider.dart';
 import 'screens/home_screen.dart';
 
 void main() => runApp(const MyApp());
@@ -11,10 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'hola mundo',
-      home: const RecipeBook(),
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => RecipesProvider())],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'hola mundo',
+        home: const RecipeBook(),
+      ),
     );
   }
 }
